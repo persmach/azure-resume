@@ -1,35 +1,41 @@
 {
-    "bindings": [
-      {
-        "name": "req",
-        "authLevel": "anonymous",
-        "methods": [
-          "get",
-          "post"
-        ],
-        "direction": "in",
-        "type": "httpTrigger"
-      },
-      {
-        "type": "http",
-        "direction": "out",
-        "name": "res"
-      },
-      {
-        "name": "inputDocument",
-        "databaseName": "visits",
-        "collectionName": "tutorial-container",
-        "connectionStringSetting": "resume2022db_DOCUMENTDB",
-        "direction": "in",
-        "type": "cosmosDB"
-      },
-      {
-        "name": "outputDocument",
-        "direction": "out",
-        "type": "cosmosDB",
-        "connectionStringSetting": "resume2022db_DOCUMENTDB",
-        "databaseName": "visits",
-        "collectionName": "tutorial-container"
-      }
-    ]
-  }
+  "scriptFile": "__init__.py",
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "get",
+        "post"
+      ]
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "$return"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "in",
+      "name": "inputDocument",
+      "databaseName": "flo-resume-db",
+      "collectionName": "configuration",
+      "connectionStringSetting": "CosmosDbConnectionString",
+      "partitionKey": "1",
+      "id": "1"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "out",
+      "name": "outputDoc",
+      "databaseName": "flo-resume-db",
+      "collectionName": "configuration",
+      "createIfNotExists": "true",
+      "connectionStringSetting": "CosmosDbConnectionString",
+      "partitionKey": "1",
+      "id": "1"
+    }
+  ]
+}
