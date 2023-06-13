@@ -1,8 +1,7 @@
 {
-  "scriptFile": "__init__.py",
   "bindings": [
     {
-      "authLevel": "anonymous",
+      "authLevel": "function",
       "type": "httpTrigger",
       "direction": "in",
       "name": "req",
@@ -14,28 +13,24 @@
     {
       "type": "http",
       "direction": "out",
-      "name": "$return"
+      "name": "res"
     },
     {
-      "type": "cosmosDB",
-      "direction": "in",
       "name": "inputDocument",
-      "databaseName": "flo-resume-db",
-      "collectionName": "configuration",
-      "connectionStringSetting": "CosmosDbConnectionString",
-      "partitionKey": "1",
-      "id": "1"
+      "direction": "in",
+      "type": "cosmosDB",
+      "connectionStringSetting": "resumecounterpersell_DOCUMENTDB",
+      "databaseName": "AzureResume",
+      "collectionName": "Counter"
     },
     {
-      "type": "cosmosDB",
+      "name": "outputDocument",
+      "databaseName": "AzureResume",
+      "collectionName": "Counter",
+      "createIfNotExists": true,
+      "connectionStringSetting": "resumecounterpersell_DOCUMENTDB",
       "direction": "out",
-      "name": "outputDoc",
-      "databaseName": "flo-resume-db",
-      "collectionName": "configuration",
-      "createIfNotExists": "true",
-      "connectionStringSetting": "CosmosDbConnectionString",
-      "partitionKey": "1",
-      "id": "1"
+      "type": "cosmosDB"
     }
   ]
 }
